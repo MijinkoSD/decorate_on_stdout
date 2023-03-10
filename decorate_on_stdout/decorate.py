@@ -24,8 +24,8 @@ class Deco:
     def cyan(text: str): return text, "36m"
     @__deco
     def white(text: str): return text, "37m"
-    @__deco
-    def color_code(text: str, color: int): return text, "37m"
+    # @__deco
+    # def color_code(text: str, color: int): return text, color
 
 
 if __name__ == "__main__":
