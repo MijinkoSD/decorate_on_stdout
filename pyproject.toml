@@ -19,6 +19,5 @@ readme = "README.md"
 [project.urls]
 "Homepage" = "https://github.com/MijinkoSD/decorate_on_stdout"
 
-
 [project.scripts]
-decorate_on_stdout = "src.decorate:Deco"
+decorate_on_stdout = "src.decorate"
