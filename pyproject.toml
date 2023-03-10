@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "example_package_YOUR_USERNAME_HERE"
+authors = ["Mijinko_SD"]
+description = "A small example package"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = []
+dynamic = ["version", "readme"]
+
+[project.urls]
+"Homepage" = "Not Existed"
+
+[tool.setuptools.dynamic]
+version = {attr = "0.1.0}
+readme = {file = ["README.md"]}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["*"]
+exclude = []
