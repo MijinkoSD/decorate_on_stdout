@@ -1,5 +1,5 @@
 import sys
-from asyncio import sleep, run
+from asyncio import sleep, run, gather
 
 ESC = "\033["
 
@@ -78,10 +78,12 @@ class MultiLine:
 
     @staticmethod
     def _cursor_up(count: int) -> None:
+        if count <= 0: return
         sys.stdout.write(f"{ESC}{count}F")
 
     @staticmethod
     def _cursor_down(count: int) -> None:
+        if count <= 0: return
         sys.stdout.write(f"{ESC}{count}E")
 
     @staticmethod
@@ -94,19 +96,27 @@ async def _main():
     """ 本来ここに書くべきではないが、面倒くさかったので…（後で消す） """
 
     m = MultiLine()
+    yet = []
     l1 = await m.add_line("sample1")
     l2 = await m.add_line("sample2")
     l3 = await m.add_line("sample3")
     l4 = await m.add_line("sample4")
     await sleep(0.5)
-    await l2.update("oooo")
+    yet.append(l2.update("oooo"))
     await sleep(0.5)
-    await l2.update("aaaa")
+    for i in range(200):
+        await gather(
+            l2.update(str(i)),
+            l3.update(str(i))
+            )
+        await sleep(0.0001)
     await sleep(0.5)
-    await l2.remove()
+    # await l2.remove()
     await sleep(0.5)
     await l3.update("sample?")
     await sleep(0.5)
+
+    await gather(*yet)
 
 if __name__ == "__main__":
     # TODO: テストコードとして分割する
