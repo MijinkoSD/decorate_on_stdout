@@ -46,4 +46,5 @@ class Deco:
 if __name__ == "__main__":
     # ぶっちゃけここはテストコードとして分割すべき
     print("sample text is below:")
-    print(f'{Deco.red("R")}{Deco.green("A")}{Deco.yellow("I")}{Deco.blue("N")}{Deco.magenta("B")}{Deco.cyan("O")}{Deco.white("W")}')
+    print(f'{Deco.red("R")}{Deco.green("A")}{Deco.yellow("I")}{Deco.blue("N")}'
+          + f'{Deco.magenta("B")}{Deco.cyan("O")}{Deco.white("W")}')
