@@ -33,14 +33,14 @@ class MultiLine:
     def __del__(self):
         self.allow_remove_line = False
 
-    async def add_line(self, text: str = "") -> _Line:
+    async def add_line(self, text: str = "") -> Line:
         """ 表示する行を下に追加します。 """
-        line = _Line(self, text=text)
+        line = Line(self, text=text)
         self.lines.append(line)
         sys.stdout.write("\n" + text)
         return line
 
-    async def update_line(self, text: str, line: _Line) -> None:
+    async def update_line(self, text: str, line: Line) -> None:
         try:
             index = self.lines.index(line)
         except IndexError:
@@ -55,7 +55,7 @@ class MultiLine:
         bottom_line_text = self.lines[-1].text
         self._render_cursor_line(bottom_line_text)
 
-    async def remove_line(self, line: _Line) -> None:
+    async def remove_line(self, line: Line) -> None:
         """ 行を削除します。 """
         if not self.allow_remove_line: return
         try:
