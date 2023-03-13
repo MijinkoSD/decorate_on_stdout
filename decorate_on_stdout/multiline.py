@@ -1,11 +1,12 @@
 import sys
 from asyncio import sleep, run, gather
+from typing import Any, Coroutine
 
 ESC = "\033["
 
 
 class Line:
-    def __init__(self, multi_line, text: str = ""):
+    def __init__(self, multi_line: "MultiLine", text: str = ""):
         self.multi_line = multi_line
         self.text = text
 
@@ -96,7 +97,7 @@ async def _main():
     """ 本来ここに書くべきではないが、面倒くさかったので…（後で消す） """
 
     m = MultiLine()
-    yet = []
+    yet: list[Coroutine[Any, Any, None]] = []
     l1 = await m.add_line("sample1")
     l2 = await m.add_line("sample2")
     l3 = await m.add_line("sample3")
