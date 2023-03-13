@@ -24,4 +24,4 @@ jobs:
         run: python -m mypy
 
       - name: Do testing (unittest)
-        run: python3.11 -m unittest discover -s test
+        run: python3.11 -m unittest discover -s test -p *.py
