@@ -1,11 +1,12 @@
 import sys
 from asyncio import sleep, run, gather
+from typing import Any, Coroutine
 
 ESC = "\033["
 
 
 class Line:
-    def __init__(self, multi_line, text: str = ""):
+    def __init__(self, multi_line: "MultiLine", text: str = ""):
         self.multi_line = multi_line
         self.text = text
 
@@ -16,16 +17,17 @@ class Line:
         """ 表示内容を更新します """
         self.text = text
         await self.multi_line.update_line(text=text, line=self)
-    
+
     async def remove(self):
         """ 行を削除します """
         await self.multi_line.remove_line(self)
         del self
 
+
 class MultiLine:
     def __init__(self):
         """ コンソールテキストの複数行の更新をサポートします。 """
-        self.lines: list[_Line] = []
+        self.lines: list[Line] = []
         """ 行ごとのインスタンス。添字が若いほど上の行。 """
         self.allow_remove_line = True
         """ 行の削除を許可するか """
@@ -45,7 +47,7 @@ class MultiLine:
             index = self.lines.index(line)
         except IndexError:
             return
-        
+
         count = len(self.lines)
         move_len = count - index - 1
         self._cursor_up(move_len)
@@ -57,12 +59,13 @@ class MultiLine:
 
     async def remove_line(self, line: Line) -> None:
         """ 行を削除します。 """
-        if not self.allow_remove_line: return
+        if not self.allow_remove_line:
+            return
         try:
             index = self.lines.index(line)
         except IndexError:
             return
-        
+
         count = len(self.lines)
         move_len_min = count - index - 1
         self._cursor_up(move_len_min)
@@ -78,12 +81,14 @@ class MultiLine:
 
     @staticmethod
     def _cursor_up(count: int) -> None:
-        if count <= 0: return
+        if count <= 0:
+            return
         sys.stdout.write(f"{ESC}{count}F")
 
     @staticmethod
     def _cursor_down(count: int) -> None:
-        if count <= 0: return
+        if count <= 0:
+            return
         sys.stdout.write(f"{ESC}{count}E")
 
     @staticmethod
@@ -96,11 +101,11 @@ async def _main():
     """ 本来ここに書くべきではないが、面倒くさかったので…（後で消す） """
 
     m = MultiLine()
-    yet = []
-    l1 = await m.add_line("sample1")
+    yet: list[Coroutine[Any, Any, None]] = []
+    await m.add_line("sample1")
     l2 = await m.add_line("sample2")
     l3 = await m.add_line("sample3")
-    l4 = await m.add_line("sample4")
+    await m.add_line("sample4")
     await sleep(0.5)
     yet.append(l2.update("oooo"))
     await sleep(0.5)
@@ -108,7 +113,7 @@ async def _main():
         await gather(
             l2.update(str(i)),
             l3.update(str(i))
-            )
+        )
         await sleep(0.0001)
     await sleep(0.5)
     # await l2.remove()
