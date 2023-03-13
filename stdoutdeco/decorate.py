@@ -4,15 +4,17 @@ from typing import Callable, ParamSpec
 
 P = ParamSpec("P")
 
+
 class Deco:
     @staticmethod
     def __deco(func: Callable[P, tuple[str, str]]) -> Callable[P, str]:
         ESC = "\033["
+
         def set_arg(*args: P.args, **kwargs: P.kwargs) -> str:
             text, color = func(*args, **kwargs)
             return ESC + color + text + ESC + "0m"
         return set_arg
-    
+
     @staticmethod
     @__deco
     def black(text: str): return text, "30m"

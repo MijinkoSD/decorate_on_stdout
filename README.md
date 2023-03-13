@@ -7,14 +7,14 @@
 シェル上でこのコマンドを入力してください。
 
 ```bash
-pip3 install -U git+https://github.com/MijinkoSD/decorate_on_stdout.git
+pip3 install -U git+https://github.com/MijinkoSD/stdoutdeco.git
 ```
 
 ## 使い方
 先に述べた通り、文字色を変えることしかできません。
 
 ```py
-from decorate_on_stdout import Deco
+from stdoutdeco import Deco
 
 print(Deco.red("RED TEXT"))
 # 赤い文字でRED TEXTと表示される
