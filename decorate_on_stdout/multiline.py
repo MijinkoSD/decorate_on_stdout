@@ -4,7 +4,7 @@ from asyncio import sleep, run, gather
 ESC = "\033["
 
 
-class _Line:
+class Line:
     def __init__(self, multi_line, text: str = ""):
         self.multi_line = multi_line
         self.text = text
