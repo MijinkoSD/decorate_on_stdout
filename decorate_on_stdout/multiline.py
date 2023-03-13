@@ -25,7 +25,7 @@ class Line:
 class MultiLine:
     def __init__(self):
         """ コンソールテキストの複数行の更新をサポートします。 """
-        self.lines: list[_Line] = []
+        self.lines: list[Line] = []
         """ 行ごとのインスタンス。添字が若いほど上の行。 """
         self.allow_remove_line = True
         """ 行の削除を許可するか """
