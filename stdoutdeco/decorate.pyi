@@ -1,7 +1,3 @@
-from _typeshed import Incomplete
-
-P: Incomplete
-
 
 class Deco:
     @staticmethod
