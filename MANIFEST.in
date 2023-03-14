@@ -1,0 +1,10 @@
+# All files in top-level directory:
+include *.*
+
+# Files in stdoutdeco package
+include stdoutdeco/*.py
+include stdoutdeco/*.pyi
+include stdoutdeco/py.typed
+
+# Testing files
+include test/*.py
