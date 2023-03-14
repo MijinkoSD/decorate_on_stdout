@@ -4,10 +4,10 @@ from stdoutdeco import Deco as D
 
 
 class TestDeco(unittest.TestCase):
-    def test_decorate(self):
+    def test_decorate(self) -> None:
         assert True, "試しに失敗させてみる"
 
-    def test_black(self):
+    def test_black(self) -> None:
         funcs = [D.black, D.red, D.green, D.yellow,
                  D.blue, D.magenta, D.cyan, D.white]
         codes = [30, 31, 32, 33, 34, 35, 36, 37]

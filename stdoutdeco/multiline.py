@@ -25,14 +25,14 @@ class Line:
 
 
 class MultiLine:
-    def __init__(self):
+    def __init__(self) -> None:
         """ コンソールテキストの複数行の更新をサポートします。 """
         self.lines: list[Line] = []
         """ 行ごとのインスタンス。添字が若いほど上の行。 """
         self.allow_remove_line = True
         """ 行の削除を許可するか """
 
-    def __del__(self):
+    def __del__(self) -> None:
         self.allow_remove_line = False
 
     async def add_line(self, text: str = "") -> Line:
@@ -97,7 +97,7 @@ class MultiLine:
         sys.stdout.write("\r" + text)
 
 
-async def _main():
+async def _main() -> None:
     """ 本来ここに書くべきではないが、面倒くさかったので…（後で消す） """
 
     m = MultiLine()
