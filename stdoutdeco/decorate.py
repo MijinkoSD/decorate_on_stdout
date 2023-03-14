@@ -17,28 +17,28 @@ class Deco:
 
     @staticmethod
     @__deco
-    def black(text: str): return text, "30m"
+    def black(text: str) -> tuple[str, str]: return text, "30m"
     @staticmethod
     @__deco
-    def red(text: str): return text, "31m"
+    def red(text: str) -> tuple[str, str]: return text, "31m"
     @staticmethod
     @__deco
-    def green(text: str): return text, "32m"
+    def green(text: str) -> tuple[str, str]: return text, "32m"
     @staticmethod
     @__deco
-    def yellow(text: str): return text, "33m"
+    def yellow(text: str) -> tuple[str, str]: return text, "33m"
     @staticmethod
     @__deco
-    def blue(text: str): return text, "34m"
+    def blue(text: str) -> tuple[str, str]: return text, "34m"
     @staticmethod
     @__deco
-    def magenta(text: str): return text, "35m"
+    def magenta(text: str) -> tuple[str, str]: return text, "35m"
     @staticmethod
     @__deco
-    def cyan(text: str): return text, "36m"
+    def cyan(text: str) -> tuple[str, str]: return text, "36m"
     @staticmethod
     @__deco
-    def white(text: str): return text, "37m"
+    def white(text: str) -> tuple[str, str]: return text, "37m"
     # @__deco
     # def color_code(text: str, color: int): return text, color
 
