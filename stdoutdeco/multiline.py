@@ -13,12 +13,12 @@ class Line:
     # def __del__(self):
     #     self.multi_line.remove_line(line=self)
 
-    async def update(self, text: str):
+    async def update(self, text: str) -> None:
         """ 表示内容を更新します """
         self.text = text
         await self.multi_line.update_line(text=text, line=self)
 
-    async def remove(self):
+    async def remove(self) -> None:
         """ 行を削除します """
         await self.multi_line.remove_line(self)
         del self
